@@ -1,0 +1,135 @@
+@import '../vendors/bootstrap/less/mixins'; 
+@import '../vendors/bootstrap/less/variables';
+@import '../mixin';
+@import '../variables';
+
+.header {
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+	min-height: @header-height;
+	.user-select(none);
+	position: fixed;
+    z-index: 11;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0 11px;
+
+	.header-inner {
+	    margin-bottom: 0px;
+	    position: relative;
+	    list-style: none;
+	    padding: 17px 0px;
+
+	    & > li {
+	        &:not(.pull-right) {
+	            float: left;
+	        }
+
+	        &:not(:last-child) {
+	            margin-right: -2px;
+	        }
+	    }
+
+	    .sider_trigger  {
+		    width: 65px;
+		    height: 35px;
+		    cursor: pointer;
+
+		    .line-wrap .line {
+		        background-color: #fff;
+		    }
+
+		    &:before {
+		        content: "";
+		        position: absolute;
+		        top: 13px;
+		        left: 7px;
+		        width: 45px;
+		        height: 45px;
+		        border-radius: 50%;
+		        background: rgba(255, 255, 255, 0.22);
+		        .transition(all);
+		        .transition-duration(300ms);
+		        .scale(0);
+		        z-index: 0;
+		    }
+
+		    &.open {
+		        &:before {
+		            .scale(1);
+		        }
+		    }
+		}
+
+	    .logo {
+			a {
+				color: #fff;
+		        text-transform: uppercase;
+		        display: block;
+		        font-size: 16px;
+		        padding: 7px 10px;
+			}
+		}
+	}	
+	
+	.top-menu {
+	    list-style: none;
+	    padding: 0;
+
+	    & > li {
+	        display: inline-block;
+	        margin: 0 1px;
+	        vertical-align: top;
+	        min-width: 50px;
+	        .hover-pop(rgba(0,0,0,0.12), 2px, 250ms, 0);
+
+	        @media (max-width: @screen-xs-max) {
+	            position: static !important;
+	        }
+
+	        & > a, & > div > a {
+	            color: #fff;
+	            display: block;
+	            text-align: center;
+	            z-index: 1;
+	            position: relative;
+
+	            & > .glyphicon {
+	                font-size: 18px;
+	                line-height: 36px;
+	            }
+	        }
+	    }
+
+	}
+}
+
+#app {
+	.aside {
+		top: @header-height;
+		height: calc(~"100% - @{header-height}");
+		box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);
+		z-index: 5;
+		.close {
+			z-index: 6;
+		}
+	}
+
+	.loading-bar {
+		height: @header-height;
+		background-color: rgba(0, 0, 0, 0.15);
+
+		.glow-bar {
+		    right: 0;
+		    height: 2px;
+		    .opacity(0.45);
+		    box-shadow: #fff 1px 0 6px 1px;
+		    border-radius: 100%;
+		}
+	}
+}
+
+#main {
+	position: relative;
+    padding-top: @header-height + 30px;
+}

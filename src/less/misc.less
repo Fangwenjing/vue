@@ -1,0 +1,81 @@
+/*
+ * Collapse Icons
+ */
+.line-wrap {
+    width: 18px;
+    height: 12px;
+    .transition(all);
+    .transition-duration(300ms);
+    margin: 12px 20px;
+
+    .line{
+        width: 18px;
+        height: 2px;
+        .transition(all);
+        .transition-duration(300ms);
+
+        &.center {
+            margin: 3px 0;
+        }
+    }
+}
+
+&.open {
+    .line-wrap {
+        .rotate(180deg);
+
+        .line {
+            &.top {
+                width: 12px;
+                transform: translateX(8px) translateY(1px) rotate(45deg);
+                -webkit-transform: translateX(8px) translateY(1px) rotate(45deg);
+            }
+
+            &.bottom {
+                width: 12px;
+                transform: translateX(8px) translateY(-1px) rotate(-45deg);
+                -webkit-transform: translateX(8px) translateY(-1px) rotate(-45deg);
+            }
+        }
+    }
+}
+
+/*
+ * toggle menu
+ */
+.sub-menu {
+  list-style: none;
+  padding-left: 0;
+
+  & > li {
+      & > a {
+          padding: 14px 15px 14px 50px;
+          display: block;
+          color: #4C4C4C;
+          font-size: 12px;
+          position: relative;
+
+          &:hover {
+              color: #262626;
+              background-color: #f7f7f7;
+          }
+
+          & > i, & > div > i {
+              position: absolute;
+              left: 15px;
+              font-size: 10px;
+              top: 0;
+              width: 25px;
+              text-align: center;
+              padding: 15px 0;
+          }
+      }
+
+      &.active {
+          & > a {
+              color: #262626;
+              background-color: #F4F4F4;
+          }
+      }
+  }
+}

@@ -1,0 +1,116 @@
+/*
+ * background-color
+ */
+ .background-color(@color) {
+    background-color: @color !important;
+ }
+
+/*
+ * CSS Animations based on animate.css
+ */
+
+.animated(@name, @duration) {
+    -webkit-animation-name: @name;
+    animation-name: @name;
+    -webkit-animation-duration: @duration;
+    animation-duration: @duration;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.basic-animation(@p, @d) {
+    -webkit-animation:  @p @d;
+    -moz-animation:     @p @d;
+    -ms-animation:      @p @d;
+    -o-animation:       @p @d;
+    animation:          @p @d;
+}
+
+.basic-animation(@p, @d, @f) {
+    -webkit-animation:  @p @d @f;
+    -moz-animation:     @p @d @f;
+    -ms-animation:      @p @d @f;
+    -o-animation:       @p @d @f;
+    animation:          @p @d @f;
+}
+
+.basic-animation(@p, @d, @f, @i) {
+    -webkit-animation:  @p @d @f @i;
+    -moz-animation:     @p @d @f @i;
+    -ms-animation:      @p @d @f @i;
+    -o-animation:       @p @d @f @i;
+    animation:          @p @d @f @i;
+}
+
+/*
+ * CSS Transform
+ */
+.scale-rotate(@scale, @rotate) {
+    -webkit-transform: scale(@scale) rotate(@rotate);
+    -ms-transform: scale(@scale) rotate(@rotate);
+    -o-transform: scale(@scale) rotate(@rotate);
+    transform: scale(@scale) rotate(@rotate);
+}
+
+.basic-transform(@p, @d, @f) {
+    transition: @p @d @f;
+    -moz-transition: @p @d @f;
+    -webkit-transition: @p @d @f;
+    -o-transition: @p @d @f; 
+}
+
+/*
+ * User Select
+ */
+.user-select (@val) {
+    -webkit-touch-callout:  @val;
+    -webkit-user-select:    @val;
+    -khtml-user-select:     @val;
+    -moz-user-select:       @val;
+    -ms-user-select:        @val;
+    user-select:            @val;
+}
+
+/*
+ * Pop-in Hover effects
+ */
+.hover-pop(@background: ~"rgba(0,0,0,0.5)", @radius: 0, @duration: 250ms, @zindex: 0) {
+    @media (min-width: @screen-sm-min) {
+        position: relative;
+
+        &:before {
+            left: 0;
+            top: 0;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            .scale3d(0,0,0);
+            .transition(all);
+            .transition-duration(@duration);
+            .backface-visibility(hidden);
+            background-color: @background;
+            z-index: @zindex;
+            border-radius: @radius;
+            .opacity(0);
+        }
+
+        &:hover:before,
+        &.open:before {
+            .scale3d(1,1,1);
+            .opacity(1);
+        }
+    }
+}
+
+/*
+ * Scale 3d
+ */
+.scale3d(...) {
+    @process: ~`(function(e){return e=e||"1, 1, 1"})((function(){var e="@{arguments}";return e=e.replace(/^\[|\]$/g,"")})())`;
+    -webkit-transform: scale3d(@process);
+    -moz-transform: scale3d(@process);
+    -ms-transform: scale3d(@process);
+    -o-transform: scale3d(@process);
+    transform: scale3d(@process);
+}
